@@ -31,7 +31,10 @@ function App() {
   const updateNotes = (allNotes) =>
   {
     if (allNotes) {
-      let data = allNotes.map(el => <Note key={el.id} id={el.id} content={el.content} removeHandler={removeNote} />);
+      let data = [];
+      allNotes.forEach(el => {
+        data.push({id: el.id, content: el.content});
+      });      
       setNotes(data);
     }    
   }
@@ -67,7 +70,7 @@ function App() {
         <button className="updateBtn" onClick={getNotes}></button>
       </div>
       <div className="notesDiv">
-        {notes}
+        {notes.map(el => <Note key={el.id} id={el.id} content={el.content} removeHandler={removeNote} />)}
       </div>
       <hr/>
       <div className="addNoteDiv">        
